@@ -1,22 +1,22 @@
 from dotenv import dotenv_values
 import discord
+from discord.ext import commands
+from gptfunctions import chat
 
 config = dotenv_values(".env")
 
-client = discord.Client(intents=discord.Intents.default())
+intents = discord.Intents.default()
+intents.message_content = True
+bot=commands.Bot(command_prefix="/", intents=intents)
 
-@client.event
+# ----------------------------- COMMANDS ------------------------------- #
 
-async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
-    print('Bot is ready!')
-
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
-
-    if message.content.startswith('$hello'):
-        await message.channel.send('Hello!')
-
-client.run(config["DISCORD-TOKEN"])
+@bot.command()
+async def test(ctx, arg):
+    """Check channel ID and send message to channel"""
+    channel = ctx.channel
+    if channel.id == 1129457187962499163:
+        response = chat(arg)
+        await channel.send(response)
+    
+bot.run(config["DISCORD-TOKEN"])
