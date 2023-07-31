@@ -12,7 +12,7 @@ bot=commands.Bot(command_prefix="/", intents=intents)
 # ----------------------------- COMMANDS ------------------------------- #
 
 @bot.command()
-async def test(ctx, arg):
+async def gpt(ctx, arg):
     """Check channel ID and send message to channel"""
     channel = ctx.channel
     if channel.id == 1129457187962499163:
