@@ -8,7 +8,7 @@ def chat(prompt: str) -> str:
     response = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
     messages=[
-            {"role": "system", "content": "You are an AI assisstant."},
+            {"role": "system", "content": "You are an AI assisstant that only responds in 2000 or less characters."},
             {"role": "user", "content": prompt}
         ]
     )
