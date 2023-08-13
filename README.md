@@ -1,7 +1,7 @@
 # Discord-GPT-bot
 
-Query Chat-GPT through a self-hosted discord bot. \n
-Provide API keys through .env or docker configuration. \n
+Query Chat-GPT through a self-hosted discord bot. <br>
+Provide API keys through .env or docker configuration. <br>
 
 
 ## Commands
