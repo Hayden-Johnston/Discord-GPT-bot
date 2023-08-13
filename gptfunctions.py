@@ -1,8 +1,9 @@
-import openai
-from dotenv import dotenv_values
+import openai, os
+from dotenv import load_dotenv
 
-config = dotenv_values(".env")
-openai.api_key = config["OPENAI-KEY"]
+if os.path.exists(".env") == True:
+    load_dotenv()
+openai.api_key = os.environ["OPENAI-TOKEN"]
 
 def chat(prompt: str) -> str:
     response = openai.ChatCompletion.create(
