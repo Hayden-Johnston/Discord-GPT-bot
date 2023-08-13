@@ -1,9 +1,11 @@
-from dotenv import dotenv_values
-import discord
+import discord, os
 from discord.ext import commands
+from dotenv import load_dotenv
 from gptfunctions import chat
 
-config = dotenv_values(".env")
+if os.path.exists(".env") == True:
+    load_dotenv()
+discord_token = os.environ["DISCORD-TOKEN"]
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -20,4 +22,4 @@ async def gpt(ctx):
         response = chat(content)
         await channel.send(response)
     
-bot.run(config["DISCORD-TOKEN"])
+bot.run(discord_token)
