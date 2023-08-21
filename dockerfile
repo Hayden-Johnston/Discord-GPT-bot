@@ -12,4 +12,4 @@ RUN pip install -r requirements.txt
 COPY discordbot.py .
 COPY gptfunctions.py .
 # COPY .env .
-CMD ["python", "discordbot.py"]
+CMD ["python", "main.py"]
