@@ -1,3 +1,7 @@
+# author: Hayden Johnston
+# date: 08/20/2023
+# description: Discord bot for GPT-3 chatbot
+
 import discord, os
 from discord.ext import commands
 from dotenv import load_dotenv
@@ -21,8 +25,12 @@ async def gpt(ctx):
     if channel.id == 1129457187962499163:
         response = chat(content)
         await channel.send(response)
+
+# ---------------------------- FUNCTIONS ------------------------------- #
+
+
     
-# ------------------------------ RUN -------------------------------- #
+# ------------------------------- RUN ---------------------------------- #
 
 def run():
     """Run bot"""
