@@ -22,4 +22,8 @@ async def gpt(ctx):
         response = chat(content)
         await channel.send(response)
     
-bot.run(discord_token)
+# ------------------------------ RUN -------------------------------- #
+
+def run_bot():
+    """Run bot"""
+    bot.run(discord_token)
