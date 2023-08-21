@@ -1,3 +1,7 @@
+# author: Hayden Johnston
+# date: 08/20/2023
+# description: GPT-3 chatbot functions
+
 import openai, os
 from dotenv import load_dotenv
 
