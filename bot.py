@@ -5,7 +5,7 @@
 import discord, os
 from discord.ext import commands
 from dotenv import load_dotenv
-from gpt_functions import chat
+from app import chat
 
 if os.path.exists(".env") == True:
     load_dotenv()
