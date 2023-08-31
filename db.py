@@ -18,7 +18,7 @@ def create_table():
     try:
         con = connect_db()
         cur = con.cursor()
-        cur.execute(f"CREATE TABLE memory ("
+        cur.execute(f"CREATE TABLE IF NOT EXISTS memory ("
                     "id TEXT NOT NULL, "
                     "memory TEXT NOT NULL)")
 
@@ -29,8 +29,8 @@ def create_table():
     finally:
         con.close()
 
-def insert_db(data):
-    """Add a new user memory to database."""
+def insert_memory(data):
+    """Add a new user to database."""
     con = connect_db()
     cur = con.cursor()
     try:
@@ -43,8 +43,8 @@ def insert_db(data):
     finally:
         con.close()
 
-def get_db():
-    """Get all memory from the table."""
+def get_all():
+    """Get all users from the table."""
     items = []
     con = connect_db()
     cur = con.cursor()
@@ -76,7 +76,7 @@ def get_by_id(id):
         con.close()
         return row
 
-def update_db(data):
+def update_memory(data):
     """Update memory in the database."""
     try:
         con = connect_db()
@@ -89,7 +89,7 @@ def update_db(data):
     finally:
         con.close()
 
-def delete_mem(id):
+def delete_memory(id):
     """Delete a user memory from the database."""
     try:
         con = connect_db()
