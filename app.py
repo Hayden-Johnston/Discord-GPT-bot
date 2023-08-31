@@ -4,6 +4,7 @@
 
 import openai, os
 from dotenv import load_dotenv
+from user_model import User
 import db
 
 if os.path.exists(".env") == True:
@@ -12,9 +13,23 @@ openai.api_key = os.environ["OPENAI-TOKEN"]
 
 # ---------------------------------------------------------------------- #
 
-data_load = {"role": "user", "content": prompt}
+def chat(prompt: str, id: int) -> str:
+    """Chat with GPT-3 chatbot"""
+    
+    # Check if user exists in database
+    get_id = db.get_by_id(id)
+    if get_id == None:
+        # Create new user
+        user = User(id)
+        db.insert_memory({"user_id": user.id, "memory": prompt})
 
-def chat(prompt: str) -> str:
+    else: 
+        # Get user memory
+        user = User(id)
+        user.memory = get_id['memory']
+
+    data_load = {"role": "user", "content": prompt}
+
     response = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
     messages=[
@@ -26,22 +41,3 @@ def chat(prompt: str) -> str:
     parsed_response = response['choices'][0]['message']['content']
 
     return parsed_response
-
-def check_memory(user_id):
-    """Check user chat memory"""
-    memory = db.get_by_id(user_id)['memory']
-    return memory
-
-def create_memory(user_id, content):
-    """Create user chat memory"""
-    data = {"user_id": user_id, "memory": [content]}
-    db.insert_memory(data)
-    
-def update_memory(user_id, content, memory):
-    """Update user chat memory"""
-    data = {"user_id": user_id, "memory": content}
-    db.update_memory(data)
-
-def delete_memory(user_id):
-    """Delete user chat memory"""
-    db.delete_memory(user_id)
