@@ -16,13 +16,14 @@ def chat(prompt: str, id: int) -> str:
     """Chat with GPT-3 chatbot"""
     
     # Check if user exists in database
-    get_id = db.get_by_id(id)
+    get_id = db.get_by_id(id)[0]
     if get_id == None:
         # Create new user
         db.insert_memory({"id": id, "memory": prompt})
 
     else: 
         # Get user memory
+        memory = get_id[1]
         
 
     data_load = {"role": "user", "content": prompt}
