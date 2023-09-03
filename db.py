@@ -98,7 +98,7 @@ def delete_memory(id):
                     (id,))
         con.commit()
     except:
-        print("Unable to delete database.")
+        print("Unable to delete memory.")
     finally:
         con.close()
 
@@ -109,10 +109,3 @@ def to_string(memory: list) -> str:
 def to_list(memory: str) -> list:
     """Convert string to list"""
     return memory.split(", ")
-
-if __name__ == '__main__':
-    insert_memory({"id": 1, "memory": ["hello world"]})
-    print(get_by_id(1)[0][1])
-    delete_memory(1)
-    print(get_by_id(1))
-    delete_memory(2)
