@@ -1,6 +1,5 @@
 import unittest
 from db import insert_memory, update_memory, delete_memory, get_by_id, get_all, create_table
-from app import chat
 
 class TestBot(unittest.TestCase):
 
@@ -12,8 +11,8 @@ class TestBot(unittest.TestCase):
     def test_insert_memory(self):
         """Test insert_memory function"""
         cases = [
-            {"id": 1, "memory": ["testing database"]},
-            {"id": 2, "memory": ["Hello World"]}
+            {"id":1, "memory": ["testing database"]},
+            {"id":2, "memory": ["Hello World"]}
         ]
         for case in cases:
             insert_memory(case)
@@ -22,8 +21,8 @@ class TestBot(unittest.TestCase):
     def test_update_memory(self):
         """Test update_memory function"""
         cases = [
-            {"id": 1, "memory": ["testing SQLite"]},
-            {"id": 2, "memory": ["Hello User"]}
+            {"id":1, "memory": ["testing SQLite"]},
+            {"id":2, "memory": ["Hello User"]}
         ]
         for case in cases:
             update_memory(case)
