@@ -1,6 +1,6 @@
 import unittest
 from db import insert_memory, update_memory, delete_memory, get_by_id, get_all, create_table
-import app
+from app import chat
 
 class TestBot(unittest.TestCase):
 
@@ -12,30 +12,29 @@ class TestBot(unittest.TestCase):
     def test_insert_memory(self):
         """Test insert_memory function"""
         cases = [
-            {"user_id": 1, "memory": ["testing database"]},
-            {"user_id": 2, "memory": ["hello world"]}
+            {"id": 1, "memory": ["testing database"]},
+            {"id": 2, "memory": ["Hello World"]}
         ]
         for case in cases:
             insert_memory(case)
-            row = get_by_id(case['user_id'])
-            self.assertEqual(get_by_id(case['user_id'])['memory'], case['memory'])
+            self.assertEqual(get_by_id(case['id'])[0][1], case['memory'])
 
     def test_update_memory(self):
         """Test update_memory function"""
         cases = [
-            {"user_id": 1, "memory": ["testing SQLite"]},
-            {"user_id": 2, "memory": ["hello discord"]}
+            {"id": 1, "memory": ["testing SQLite"]},
+            {"id": 2, "memory": ["Hello User"]}
         ]
         for case in cases:
             update_memory(case)
-            self.assertEqual(get_by_id(case['user_id'])['memory'], case['memory'])
+            self.assertEqual(get_by_id(case['id'])[0][1], case['memory'])
 
-    def delete_memory(self):
+    def test_delete_memory(self):
         """Test delete_memory function"""
-        cases = [ 1, 2]
+        cases = [1, 2]
         for case in cases:
             delete_memory(case)
-            self.assertEqual(get_by_id(case), None)
+            self.assertEqual(get_by_id(case), [])
 
 if __name__ == '__main__':
     unittest.main()
