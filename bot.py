@@ -24,7 +24,7 @@ async def gpt(ctx):
     content = ctx.message.content
     user_id = ctx.message.author.id
     if channel.id == 1129457187962499163:
-        response = chat(content)
+        response = chat(content, user_id)
         await channel.send(response)
 
 # ----------------------------- FUNCTIONS ------------------------------ #
