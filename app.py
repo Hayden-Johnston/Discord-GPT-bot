@@ -4,7 +4,6 @@
 
 import openai, os
 from dotenv import load_dotenv
-from user_model import User
 import db
 
 if os.path.exists(".env") == True:
@@ -20,13 +19,11 @@ def chat(prompt: str, id: int) -> str:
     get_id = db.get_by_id(id)
     if get_id == None:
         # Create new user
-        user = User(id)
-        db.insert_memory({"id": user.id, "memory": prompt})
+        db.insert_memory({"id": id, "memory": prompt})
 
     else: 
         # Get user memory
-        user = User(id)
-        user.memory = get_id['memory']
+        
 
     data_load = {"role": "user", "content": prompt}
 
