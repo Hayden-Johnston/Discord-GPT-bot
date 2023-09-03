@@ -21,7 +21,7 @@ def chat(prompt: str, id: int) -> str:
     if get_id == None:
         # Create new user
         user = User(id)
-        db.insert_memory({"user_id": user.id, "memory": prompt})
+        db.insert_memory({"id": user.id, "memory": prompt})
 
     else: 
         # Get user memory
@@ -41,3 +41,4 @@ def chat(prompt: str, id: int) -> str:
     parsed_response = response['choices'][0]['message']['content']
 
     return parsed_response
+
