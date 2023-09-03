@@ -33,6 +33,7 @@ def insert_memory(data):
     """Add a new user to database."""
     con = connect_db()
     cur = con.cursor()
+    data['memory'] = to_string(data['memory'])
     try:
         cur.execute("INSERT or IGNORE into memory (id, memory) VALUES (?, ?)",
                     (data['id'], data['memory']))
@@ -67,7 +68,6 @@ def get_by_id(id):
     con = connect_db()
     cur = con.cursor()
     try:
-        
         cur.execute(f"SELECT * FROM memory WHERE id= ?;",(id,))
         row = cur.fetchall()
     except:
@@ -81,7 +81,8 @@ def update_memory(data):
     try:
         con = connect_db()
         cur = con.cursor()
-        cur.execute("UPDATE memory SET value = ? WHERE name = ?",
+        data['memory'] = to_string(data['memory'])
+        cur.execute("UPDATE memory SET memory = ? WHERE id = ?",
                     (data['memory'], data['id']))
         con.commit()
     except Exception as e:
@@ -100,4 +101,18 @@ def delete_memory(id):
         print("Unable to delete database.")
     finally:
         con.close()
-        
+
+def to_string(memory: list) -> str:
+    """Convert list to string"""
+    return ", ".join(memory)
+
+def to_list(memory: str) -> list:
+    """Convert string to list"""
+    return memory.split(", ")
+
+if __name__ == '__main__':
+    insert_memory({"id": 1, "memory": ["hello world"]})
+    print(get_by_id(1)[0][1])
+    delete_memory(1)
+    print(get_by_id(1))
+    delete_memory(2)
