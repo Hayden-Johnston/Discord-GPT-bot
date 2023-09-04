@@ -1,7 +1,8 @@
 # Discord-GPT-bot
 Self-hosted Discord bot to query gpt-3. <br>
 Maintains discrete chat memory for each user with SQLite to allow continued conversation. <br>
-By default the database will maintain the last 2 messages from the user and system to
+By default the database will maintain the last 2 messages from the user and system with a **400 Character limit** for any query or response.
+*Due to the 2000 character limit of the gpt api and the possibility of handling up to 5 messages in a query, 400 characters is a safe starting point*
 
 ## Setup
 Provide API keys through .env or docker configuration. <br>
