@@ -1,14 +1,19 @@
 # Discord-GPT-bot
+Self-hosted Discord bot to query gpt-3. <br>
+Maintains discrete chat memory for each user with SQLite to allow continued conversation. <br>
+By default the database will maintain the last 2 messages from the user and system to
 
 ## Setup
-Self-hosted Discord bot to query gpt-3. <br>
 Provide API keys through .env or docker configuration. <br>
-
+Run main.py or build docker container and deploy.
 
 ## Commands
 **/gpt** - Send query to Chat-GPT and the bot will output a response.  <br>
 Bot will save the last 2 messages from both the user and bot and send with the next query to maintain chat memory.
+<br>
 **/gpt-n** - User resets their chat memory to begin a new conversation.
+<br>
+**/gpt-d** - Allow the system to deliver a more detailed response by removing the character limit imposed by chat memory - **Does not utilize chat memory** <br>
 <br>
 <br>
 <br>
