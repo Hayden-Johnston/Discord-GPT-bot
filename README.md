@@ -1,5 +1,7 @@
 # Discord-GPT-bot
 Self-hosted Discord bot to query gpt-3. <br>
+<br>
+<br>
 
 ## Database
 Maintains discrete chat memory for each user with SQLite to allow continued conversation. <br>
