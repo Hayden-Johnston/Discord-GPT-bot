@@ -1,5 +1,5 @@
 # Discord-GPT-bot
-Self-hosted Discord bot to query gpt-3. <br>
+Self-hosted Discord bot to query gpt-3. 
 <br>
 <br>
 
