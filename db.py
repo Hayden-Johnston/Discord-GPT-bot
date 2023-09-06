@@ -82,7 +82,8 @@ def update_memory(data: dict) -> None:
     try:
         con = connect_db()
         cur = con.cursor()
-        data['memory'] = to_string(data['memory'])
+        if type(data['memory']) == list:
+            data['memory'] = to_string(data['memory'])
         cur.execute("UPDATE memory SET memory = ? WHERE id = ?",
                     (data['memory'], data['id']))
         con.commit()
