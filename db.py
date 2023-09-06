@@ -4,7 +4,7 @@
 
 import sqlite3
 
-def connect_db():
+def connect_db() -> sqlite3.Connection:
     """Connects to sqlite database."""
     try:
         con = sqlite3.connect('bot.db')
@@ -13,7 +13,7 @@ def connect_db():
     finally:
         return con
 
-def create_table():
+def create_table() -> None:
     """Creates a table in the database."""
     try:
         con = connect_db()
@@ -29,11 +29,12 @@ def create_table():
     finally:
         con.close()
 
-def insert_memory(data):
+def insert_memory(data: dict) -> None:
     """Add a new user to database."""
     con = connect_db()
     cur = con.cursor()
-    data['memory'] = to_string(data['memory'])
+    if type(data['memory']) == list:
+        data['memory'] = to_string(data['memory'])
     try:
         cur.execute("INSERT or IGNORE into memory (id, memory) VALUES (?, ?)",
                     (data['id'], data['memory']))
@@ -44,7 +45,7 @@ def insert_memory(data):
     finally:
         con.close()
 
-def get_all():
+def get_all() -> list:
     """Get all users from the table."""
     items = []
     con = connect_db()
@@ -63,7 +64,7 @@ def get_all():
         con.close()
     return items
 
-def get_by_id(id):
+def get_by_id(id: int) -> list:
     """Get user memory by id."""
     con = connect_db()
     cur = con.cursor()
@@ -76,7 +77,7 @@ def get_by_id(id):
         con.close()
         return row
 
-def update_memory(data):
+def update_memory(data: dict) -> None:
     """Update memory in the database."""
     try:
         con = connect_db()
@@ -90,7 +91,7 @@ def update_memory(data):
     finally:
         con.close()
 
-def delete_memory(id):
+def delete_memory(id: int) -> None:
     """Delete a user memory from the database."""
     try:
         con = connect_db()
