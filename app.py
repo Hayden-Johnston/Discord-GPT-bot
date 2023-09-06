@@ -10,33 +10,34 @@ if os.path.exists(".env") == True:
     load_dotenv()
 openai.api_key = os.environ["OPENAI-TOKEN"]
 
-# ---------------------------------------------------------------------- #
+# -------------------------------- GPT --------------------------------- #
 
-def chat(prompt: str, id: int) -> str:
+def chat(data: list) -> str:
     """Chat with GPT-3 chatbot"""
-    
-    # Check if user exists in database
-    get_id = db.get_by_id(id)[0]
-    if get_id == None:
-        # Create new user
-        db.insert_memory({"id": id, "memory": prompt})
-
-    else: 
-        # Get user memory
-        memory = get_id[1]
-        
-
-    data_load = {"role": "user", "content": prompt}
 
     response = openai.ChatCompletion.create(
-    model="gpt-3.5-turbo",
-    messages=[
-            {"role": "system", "content": "You are an AI assisstant that only responds in 2000 or less characters."},
-            data_load
-        ]
+    model = "gpt-3.5-turbo",
+    messages = data
     )
 
     parsed_response = response['choices'][0]['message']['content']
 
     return parsed_response
 
+# ---------------------------------------------------------------------- #
+
+def handle_memory(id: int, prompt: str) -> None:
+    """Handle user memory"""
+    user_memory = db.get_by_id(id)
+
+    if user_memory == []:
+        # Create new user
+        db.insert_memory({"id": id, "memory": prompt})
+
+    else: 
+        memory = get_id
+        memory.append(prompt)
+        if len(memory) > 2:
+            memory.pop(0)
+        db.update_memory({"id": id, "memory": memory})
+        prompt = memory
