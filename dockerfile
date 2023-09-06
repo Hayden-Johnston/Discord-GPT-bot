@@ -9,7 +9,9 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Run the application:
-COPY discordbot.py .
-COPY gptfunctions.py .
-# COPY .env .
+COPY bot.py .
+COPY app.py .
+COPY db.py .
+COPY main.py .
+
 CMD ["python", "main.py"]
