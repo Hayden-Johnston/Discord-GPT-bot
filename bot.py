@@ -10,7 +10,7 @@ from db import get_by_id, insert_memory, update_memory, delete_memory
 
 if os.path.exists(".env") == True:
     load_dotenv()
-discord_token = os.environ["DISCORD-TOKEN"]
+discord_token = os.environ["DISCORDTOKEN"]
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -40,7 +40,7 @@ async def gpt(ctx):
         await channel.send(response)
 
 @bot.command()
-async def gptd(ctx):
+async def dgpt(ctx):
     """Get more detailed response, not using chat memory"""
     channel = ctx.channel
     content = ctx.message.content
@@ -58,7 +58,7 @@ async def gptd(ctx):
         await channel.send(response)
 
 @bot.command()
-async def gptn(ctx):
+async def ngpt(ctx):
     """Clear user chat memory"""
     channel = ctx.channel
     user_id = ctx.message.author.id
