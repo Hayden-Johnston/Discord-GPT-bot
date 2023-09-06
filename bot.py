@@ -5,7 +5,8 @@
 import discord, os
 from discord.ext import commands
 from dotenv import load_dotenv
-from app import chat
+from app import chat, handle_memory
+from db import get_by_id, insert_memory, update_memory, delete_memory
 
 if os.path.exists(".env") == True:
     load_dotenv()
@@ -19,13 +20,50 @@ bot=commands.Bot(command_prefix="/", intents=intents)
 
 @bot.command()
 async def gpt(ctx):
-    """Check channel ID and send message to channel"""
+    """Query GPT-3 from chat-gpt channel"""
     channel = ctx.channel
     content = ctx.message.content
     user_id = ctx.message.author.id
     if channel.id == 1129457187962499163:
-        response = chat(content, user_id)
+        
+        memory = get_by_id(user_id)
+
+        prompt = {"role": "user", "content": content[5:]}
+        data = [
+            {"role": "system", "content": "You are an AI assisstant that only responds in 400 or less characters without commas."},
+        ]
+
+        if len(content) > 400:
+            response = "Error: character limit (400) exceeded."
+        else:
+            response = chat(data)
         await channel.send(response)
+
+@bot.command()
+async def gptd(ctx):
+    """Get more detailed response, not using chat memory"""
+    channel = ctx.channel
+    content = ctx.message.content
+    if channel.id == 1129457187962499163:
+
+        data = [
+            {"role": "system", "content": "You are an AI assisstant that only responds in 2000 or less characters."},
+            {"role": "user", "content": content[6:]}
+        ]
+
+        if len(content) > 2000:
+            response = "Error: character limit (400) exceeded."
+        else:
+            response = chat(data)
+        await channel.send(response)
+
+@bot.command()
+async def gptn(ctx):
+    """Clear user chat memory"""
+    channel = ctx.channel
+    user_id = ctx.message.author.id
+    if channel.id == 1129457187962499163:
+        delete_memory(user_id)
 
 # ----------------------------- FUNCTIONS ------------------------------ #
 
