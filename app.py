@@ -8,7 +8,7 @@ import db
 
 if os.path.exists(".env") == True:
     load_dotenv()
-openai.api_key = os.environ["OPENAI-TOKEN"]
+openai.api_key = os.environ["OPENAITOKEN"]
 
 # -------------------------------- GPT --------------------------------- #
 
@@ -30,14 +30,14 @@ def handle_memory(id: int, prompt: str) -> None:
     """Handle user memory"""
     user_memory = db.get_by_id(id)
 
-    if user_memory == []:
+    if user_memory == None:
         # Create new user
-        db.insert_memory({"id": id, "memory": prompt})
+        db.insert_memory({"id": id, "memory": [prompt]})
 
     else: 
-        memory = get_id
+        memory = user_memory
         memory.append(prompt)
         if len(memory) > 2:
             memory.pop(0)
-        db.update_memory({"id": id, "memory": memory})
+        db.update_memory({"id": id, "memory": [memory]})
         prompt = memory
