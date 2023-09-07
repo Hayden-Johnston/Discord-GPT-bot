@@ -33,8 +33,6 @@ def insert_memory(data: dict) -> None:
     """Add a new user to database."""
     con = connect_db()
     cur = con.cursor()
-    if type(data['memory']) == list:
-        data['memory'] = to_string(data['memory'])
     try:
         cur.execute("INSERT or IGNORE into memory (id, memory) VALUES (?, ?)",
                     (data['id'], data['memory']))
@@ -82,8 +80,6 @@ def update_memory(data: dict) -> None:
     try:
         con = connect_db()
         cur = con.cursor()
-        if type(data['memory']) == list:
-            data['memory'] = to_string(data['memory'])
         cur.execute("UPDATE memory SET memory = ? WHERE id = ?",
                     (data['memory'], data['id']))
         con.commit()
@@ -104,10 +100,3 @@ def delete_memory(id: int) -> None:
     finally:
         con.close()
 
-def to_string(memory: list) -> str:
-    """Convert list to string"""
-    return ", ".join(memory)
-
-def to_list(memory: str) -> list:
-    """Convert string to list"""
-    return memory.split(", ")
