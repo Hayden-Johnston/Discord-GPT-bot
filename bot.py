@@ -26,11 +26,12 @@ async def gpt(ctx):
     user_id = ctx.message.author.id
     if channel.id == 1129457187962499163:
         
-        memory = get_by_id(user_id)
+        handle_memory(user_id, content[5:])
+        user_memory = get_by_id(user_id)[0][1]
 
-        prompt = {"role": "user", "content": content[5:]}
         data = [
             {"role": "system", "content": "You are an AI assisstant that only responds in 400 or less characters without commas."},
+            {"role": "user", "content": content[5:]}
         ]
 
         if len(content) > 400:
@@ -52,7 +53,7 @@ async def dgpt(ctx):
         ]
 
         if len(content) > 2000:
-            response = "Error: character limit (400) exceeded."
+            response = "Error: character limit (2000) exceeded."
         else:
             response = chat(data)
         await channel.send(response)
