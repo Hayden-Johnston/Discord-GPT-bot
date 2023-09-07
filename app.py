@@ -28,16 +28,17 @@ def chat(data: list) -> str:
 
 def handle_memory(id: int, prompt: str) -> None:
     """Handle user memory"""
+
     user_memory = db.get_by_id(id)
 
-    if user_memory == None:
+    if user_memory == []:
         # Create new user
-        db.insert_memory({"id": id, "memory": [prompt]})
+        db.insert_memory({"id": id, "memory": prompt})
 
     else: 
-        memory = user_memory
-        memory.append(prompt)
-        if len(memory) > 2:
-            memory.pop(0)
-        db.update_memory({"id": id, "memory": [memory]})
-        prompt = memory
+        user_memory = user_memory[0][1].split(", ")
+        user_memory.append(prompt)
+        if len(user_memory) > 2:
+            user_memory.pop(0)
+        user_memory = ", ".join(user_memory)
+        db.update_memory({"id": id, "memory": user_memory})
