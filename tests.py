@@ -1,5 +1,9 @@
+# author: Hayden Johnston
+# date: 09/07/2023
+# description: Unit tests for SQLite database and handle_memory function
+
 import unittest
-from db import insert_memory, update_memory, delete_memory, get_by_id, get_all, create_table
+from db import insert_memory, update_memory, delete_memory, get_by_id, create_table
 from app import handle_memory
 
 class TestBot(unittest.TestCase):
