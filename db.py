@@ -1,5 +1,5 @@
 # author: Hayden Johnston
-# date: 08/20/2023
+# date: 09/07/2023
 # description: SQLite implementation for GPT-3 chat memory
 
 import sqlite3
