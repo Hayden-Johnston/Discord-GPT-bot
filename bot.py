@@ -39,12 +39,15 @@ async def gpt(ctx):
                 handle_memory(user_id, content[5:], response)
 
             else:
+
+                user_memory = user_memory[0][1].split(", ")
+                print(user_memory)
                 data = [
                     {"role": "system", "content": "You are an AI assisstant that only responds in 400 or less characters without commas."},
-                    {"role": "user", "content": user_memory[0][1][0]},
-                    {"role": "system", "content": user_memory[0][1][1]},
-                    {"role": "user", "content": user_memory[0][1][2]},
-                    {"role": "system", "content": user_memory[0][1][3]},
+                    {"role": "user", "content": user_memory[0]},
+                    {"role": "system", "content": user_memory[1]},
+                    {"role": "user", "content": user_memory[2]},
+                    {"role": "system", "content": user_memory[3]},
                     {"role": "user", "content": content[5:]}
                 ]
                 response = chat(data)
