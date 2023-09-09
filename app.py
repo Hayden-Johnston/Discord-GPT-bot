@@ -33,7 +33,9 @@ def handle_memory(id: int, prompt: str, response: str) -> None:
 
     if user_memory == []:
         # Create new user
-        db.insert_memory({"id": id, "memory": [prompt, response]})
+        data = {"id": id, "memory": [prompt, response]}
+        data["memory"] = ", ".join(data["memory"])
+        db.insert_memory(data)
 
     else: 
         user_memory = user_memory[0][1].split(", ")
