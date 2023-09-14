@@ -6,7 +6,7 @@ Self-hosted Discord bot to query GPT-3.
 ## Database
 Maintains discrete chat memory for each user with SQLite to allow continued conversation. <br>
 By default the database will maintain the last 2 messages from the user and system with a **400 Character limit** for any query or response.
-The command /gpt-d allows a user to raise the character limit to 2000 without utilizing chat memory, this is the limit of the gpt api.
+The command /gptd allows a user to raise the character limit to 2000 without utilizing chat memory, this is the limit of the gpt api.
 <br>
 <br>
 
