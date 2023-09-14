@@ -11,10 +11,10 @@ The command /gpt-d allows a user to raise the character limit to 2000 without ut
 <br>
 
 ## Commands
-**/gpt** {query} - Send query to Chat-GPT and the bot will output a response.  Utilizes chat memory.  
-example: /gpt Hello world!
-**/gptd** {query} - Get a more detailed response by removing the character limit imposed by chat memory - **Does not utilize chat memory** 
-example: /gptd Hello world!
+**/gpt** {query} - Send query to Chat-GPT and the bot will output a response.  Utilizes chat memory.  <br>
+example: /gpt Hello world! <br>
+**/gptd** {query} - Get a more detailed response by removing the character limit imposed by chat memory - **Does not utilize chat memory** <br>
+example: /gptd Hello world! <br>
 <br>
 **/gptn** - User resets their chat memory to begin a new conversation.
 <br>
