@@ -23,7 +23,8 @@ example: /gptd Hello world! <br>
 <br>
 
 ## Setup
-Provide API keys through .env or docker configuration. <br>
+Setup app through discord developer portal.
+Provide Discord app token and OpenAI API key through .env or docker configuration. <br>
 Run main.py or build docker container and deploy.
 
 <br>
