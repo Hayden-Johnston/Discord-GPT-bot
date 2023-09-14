@@ -1,5 +1,5 @@
 # Discord-GPT-bot
-Self-hosted Discord bot to query gpt-3. 
+Self-hosted Discord bot to query GPT-3. 
 <br>
 <br>
 
@@ -11,8 +11,10 @@ The command /gpt-d allows a user to raise the character limit to 2000 without ut
 <br>
 
 ## Commands
-**/gpt** - Send query to Chat-GPT and the bot will output a response.  Utilizes chat memory.  
-**/gptd** - Get a more detailed response by removing the character limit imposed by chat memory - **Does not utilize chat memory** 
+**/gpt** {query} - Send query to Chat-GPT and the bot will output a response.  Utilizes chat memory.  
+example: /gpt Hello world!
+**/gptd** {query} - Get a more detailed response by removing the character limit imposed by chat memory - **Does not utilize chat memory** 
+example: /gptd Hello world!
 <br>
 **/gptn** - User resets their chat memory to begin a new conversation.
 <br>
