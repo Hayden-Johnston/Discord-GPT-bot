@@ -14,10 +14,10 @@ The command /gptd allows a user to raise the character limit to 2000 without uti
 **/gpt** {query} - Send query to Chat-GPT and the bot will output a response.  Utilizes chat memory.  <br>
 example: /gpt Hello world! <br>
 <br>
-**/gptd** {query} - Get a more detailed response by removing the character limit imposed by chat memory - **Does not utilize chat memory** <br>
+**/dgpt** {query} - Get a more detailed response by removing the character limit imposed by chat memory - **Does not utilize chat memory** <br>
 example: /gptd Hello world! <br>
 <br>
-**/gptn** - User resets their chat memory to begin a new conversation.
+**/ngpt** - User resets their chat memory to begin a new conversation.
 <br>
 <br>
 
